@@ -36,21 +36,22 @@
 </body>
 <script>
     var url = 'https://examples.wenzhixin.net.cn/examples/bootstrap_table/data';
+    var url_test = 'http://118.25.112.36:8800/get_data_by_code/?ts_code=603337.SH&dt=20200121';
     var columns = [
         {
             field: 'id',
             title: 'ID',
         }, {
-            field: 'name',
-            title: '姓名'
+            field: 'buy_price_finial',
+            title: '购买价格'
         }, {
-            field: 'price',
-            title: '价格'
+            field: 'dt',
+            title: '日期'
         },
     ];
     $("#table").bootstrapTable({
         toolbar: '#toolbar',                //自定义工具按钮
-        url: url,                           //请求后台的URL（*）
+        url: url_test,                           //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         pagination: true,                   //是否显示分页（*）
