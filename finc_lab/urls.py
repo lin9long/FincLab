@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from data_query import views as data_query_views
+import bootstrapTable
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', data_query_views.index),
+    # url(r'^$', data_query_views.index),
     url(r'get_data_by_code/', data_query_views.get_data_by_code),
+    path('bootstrapTable/', include('bootstrapTable.urls')),
 ]

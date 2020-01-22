@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 
 from .models import FincRBuySellD
 from .serializers import FincRBuySellDSerializer
+import json
 # Create your views here.
 
 def index(request):
@@ -13,6 +14,8 @@ def index(request):
     serializer = FincRBuySellDSerializer(test_data, many=True)
     return HttpResponse(serializer.data)
 
+def bootstrapTable(request):
+    return render(request,'bootstrapTable/index.html')
 
 @api_view(['GET', 'POST'])
 def get_data_by_code(request):
@@ -22,7 +25,9 @@ def get_data_by_code(request):
         if ts_code is not None:
             data = FincRBuySellD.objects.filter(ts_code=ts_code).filter(dt=dt)
             serializer = FincRBuySellDSerializer(data, many=True)
-            return HttpResponse(serializer.data)
+            jd = json.loads(serializer.data)
+            sd = serializer.data[0]
+            return HttpResponse(sd['ts_code']+sd['name'])
         else:
             return HttpResponse('please set ts_code and dt')
 

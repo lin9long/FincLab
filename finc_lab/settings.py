@@ -27,7 +27,7 @@ SECRET_KEY = '5*zuyw1k(auymm9zs-qlp+(3qlawle*)jgn&5^1rpa^#bb2&=o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['118.25.112.36','172.17.0.17','202.96.185.42']
+ALLOWED_HOSTS = ['118.25.112.36','172.17.0.17','202.96.185.42','127.0.0.1']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'finc_lab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
 WSGI_APPLICATION = 'finc_lab.wsgi.application'
