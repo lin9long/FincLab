@@ -37,6 +37,12 @@
 <script>
     var url = 'https://examples.wenzhixin.net.cn/examples/bootstrap_table/data';
     var url_test = 'http://118.25.112.36:8800/get_data_by_code/?ts_code=603337.SH&dt=20200121';
+
+    var jsonDataCall = $.getJSON(url_test, function(result){
+        jsonDataCall =result
+    });
+    console.log(jsonDataCall)
+    // print(jsonDataCall)
     var columns = [
         {
             field: 'id',
@@ -62,7 +68,7 @@
         search: true,                       //是否显示表格搜索
         showColumns: true,                  //是否显示所有的列
         showRefresh: true,                  //是否显示刷新按钮
-        minimumCountColumns: 2,             //最少允许的列数
+        minimumCountColumns: 10,             //最少允许的列数
         height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
         showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
         columns: columns,                   //列参数
