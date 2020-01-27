@@ -19,6 +19,7 @@ class FincRBuySellD(models.Model):
     back_test_win_gmean = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True)
     back_test_win_label = models.BigIntegerField(blank=True, null=True)
     buy_price = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True)
+    r_sell = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True)
     dt = models.BigIntegerField(blank=True, null=True)
 
     class Meta:

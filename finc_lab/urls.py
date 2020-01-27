@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^$', data_query_views.index),
     url(r'get_data_by_code/', data_query_views.get_data_by_code),
+    url(r'get_data_by_dt/', data_query_views.get_data_by_dt),
     path('bootstrapTable/', include('bootstrapTable.urls')),
 ]

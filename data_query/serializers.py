@@ -9,4 +9,4 @@ class FincRBuySellDSerializer(serializers.ModelSerializer):
    class Meta:
        model = FincRBuySellD
        # 和"__all__"等价
-       fields = ('id','ts_code','name','buy_price_finial','industry','diff_close','low','high','close','diff_lg_elg_amount','roll_return_flag','back_test_win_flag','buy_price_3','buy_price_5','back_test_win_gmean','back_test_win_label','buy_price','dt')
+       fields = ('id','ts_code','name','buy_price_finial','industry','diff_close','low','high','close','diff_lg_elg_amount','roll_return_flag','back_test_win_flag','buy_price_3','buy_price_5','back_test_win_gmean','back_test_win_label','r_sell','buy_price','dt')
