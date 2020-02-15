@@ -4,8 +4,8 @@ from requests import Response
 # Create your views here.
 from rest_framework.decorators import api_view
 
-from .models import FincRBuySellD
-from .serializers import FincRBuySellDSerializer
+from .models import FincRBuySellD,FincRBuySellStartegy3D
+from .serializers import FincRBuySellDSerializer,FincRBuySellStartegy3DSerializer
 import json
 # Create your views here.
 
@@ -21,22 +21,31 @@ def get_data_by_dt(request):
         dt = request.GET['dt']
         try:
             search_kw = request.GET['search_kw']
+            search_dt = request.GET['search_dt']
+            search_segy = request.GET['search_segy']
         except:
             search_kw = ""
-        if dt is not None:
-            data = FincRBuySellD.objects.filter(dt__contains = dt)
-            if search_kw is not "":
-                data = data.filter(ts_code__contains = search_kw)
-            serializer = FincRBuySellDSerializer(data, many=True)
-            sd = serializer.data
-            data_dict = {}
-            data_dict['total'] = len(sd)
-            data_dict['totalNotFiltered'] = len(sd)
-            data_dict['rows'] = sd
-            sd_js = json.dumps(data_dict,ensure_ascii=True)
-            return HttpResponse(sd_js,content_type="application/json,charset=utf-8")
-        else:
-            return HttpResponse('please set ts_code and dt')
+            search_dt = ""
+            search_segy = ""
+    # if dt is not None:
+    #     data = FincRBuySellD.objects.filter(dt__contains = dt)
+        if search_dt is not "":
+            data = FincRBuySellD.objects.filter(dt__contains = search_dt)
+        if search_kw is not "":
+            data = data.filter(ts_code__contains = search_kw)
+        if search_dt is not "" and search_segy == '3':
+            data = FincRBuySellStartegy3D.objects.filter(dt__contains=search_dt)
+
+        serializer = FincRBuySellDSerializer(data, many=True)
+        sd = serializer.data
+        data_dict = {}
+        data_dict['total'] = len(sd)
+        data_dict['totalNotFiltered'] = len(sd)
+        data_dict['rows'] = sd
+        sd_js = json.dumps(data_dict,ensure_ascii=True)
+        return HttpResponse(sd_js,content_type="application/json,charset=utf-8")
+    else:
+        return HttpResponse('please set ts_code and dt')
 
 @api_view(['GET', 'POST'])
 def get_data_by_code(request):

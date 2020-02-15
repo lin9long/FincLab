@@ -23,6 +23,7 @@
     <div>
         <input id="dt-keyword" placeholder="请输入日期查询">
         <input id="search-keyword" placeholder="请输入编号查询">
+        <input id="startegy-keyword" placeholder="请输入策略编号查询">
         <button id="search-button">查询</button>
     </div>
 
@@ -42,6 +43,9 @@
 </div>
 </body>
 <script>
+
+    today =  getToday()
+    console.log(today)
     var url = 'https://examples.wenzhixin.net.cn/examples/bootstrap_table/data';
     var url_code = 'http://118.25.112.36:8800/get_data_by_code/?ts_code=603337.SH&dt=20200121';
     var url_all = 'http://118.25.112.36:8800/get_data_by_dt/?dt=20200121';
@@ -115,8 +119,9 @@
                 sortOrder: params.order, //排位命令（desc，asc）
 
                 //查询框中的参数传递给后台
-                search_kw: $('#search-keyword').val(), // 请求时向服务端传递的参数
-                dt: $('#dt-keyword').val(), // 请求时向服务端传递的参数
+                search_kw: $('#search-keyword').val(), // 编码
+                search_dt: $('#dt-keyword').val(), // 日期
+                search_segy: $('#startegy-keyword').val(), // 策略
             };
             return query_params;
         },
